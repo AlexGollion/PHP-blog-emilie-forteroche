@@ -30,6 +30,11 @@ class ArticleController
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
         }
+         
+        //Mise à jour du nombre de vues
+        $nbVues = $article->getNombreVues() + 1;
+        $article->setNombreVues($nbVues);
+        $articleManager->addVues($article->getNombreVues(), $id);
 
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);

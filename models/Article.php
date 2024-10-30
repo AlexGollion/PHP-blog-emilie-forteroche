@@ -11,6 +11,7 @@
     private string $content = "";
     private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;  
+    private int $nbVues = 0;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -126,5 +127,23 @@
     public function getDateUpdate() : ?DateTime 
     {
         return $this->dateUpdate;
+    }
+
+    /**
+     * Setter pour le nombre de vues
+     * @param int $nbVues : nouveau nombre de vues
+     */
+    public function setNombreVues(int $nbVues)
+    {
+        $this->nbVues = $nbVues;
+    }
+
+    /**
+     * Getter pour le nombre de vues
+     * @return int 
+     */
+    public function getNombreVues() : int
+    {
+        return $this->nbVues;
     }
  }

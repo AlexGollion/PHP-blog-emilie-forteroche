@@ -14,7 +14,8 @@
         <span class="info"> Publié le <?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></span>
         <?php if ($article->getDateUpdate() != null) { ?>
             <span class="info"> Modifié le <?= Utils::convertDateToFrenchFormat($article->getDateUpdate()) ?></span>
-        <?php } ?>
+            <?php } ?>
+        <span class="vues"> Vues <?= Utils::format($article->getNombreVues()) ?> fois</span>    
     </div>
 </article>
 
