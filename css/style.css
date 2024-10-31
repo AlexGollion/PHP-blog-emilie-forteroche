@@ -350,6 +350,38 @@ a.info {
     border: 1px solid var(--backgroundColor);
 }
 
+/**
+ * Partie monitoring 
+ */
+
+.monitoringTable {
+    border-collapse: collapse;
+}
+
+.rowMonitoring, .titleMonitoring {
+    border: 3px solid black;
+    text-align: center;
+    padding: 20px;
+}
+
+.titleMonitoring {
+    background-color: var(--quoteColor);
+    font-size: 18px;
+}
+
+.rowTitle {
+    font-weight: bold;
+}
+
+.monitoringColorA {
+    background-color: var(--commentColor);
+    color: white;
+}
+
+.monitoringColorB {
+    background-color: var(--commentPaleColor);
+}
+
 /** 
  * Footer global de la page.
  */

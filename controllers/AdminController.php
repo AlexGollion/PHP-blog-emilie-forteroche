@@ -176,4 +176,30 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+
+    public function monitoringArticle()
+    {
+        $this->checkIfUserIsConnected();
+
+        //echo "ici";
+        // On récupère les articles.
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticles();
+        
+        $commentManager = new CommentManager();
+        $nbComment = [];
+        foreach ($articles as $article)
+        {
+            $idTemp =  $article->getId();
+            $i = $commentManager->countComment($idTemp);
+            array_push($nbComment, $i);
+        }
+        
+        // On affiche la page d'administration.
+        $view = new View("Monitoring des articles");
+        $view->render("monitoring", [
+            'articles' => $articles,
+            'nbComment' => $nbComment,
+        ]);
+    }
 }

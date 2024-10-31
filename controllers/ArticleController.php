@@ -34,7 +34,7 @@ class ArticleController
         //Mise à jour du nombre de vues
         $nbVues = $article->getNombreVues() + 1;
         $article->setNombreVues($nbVues);
-        $articleManager->addVues($article->getNombreVues(), $id);
+        $articleManager->addVues($article);
 
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);

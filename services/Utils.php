@@ -87,4 +87,18 @@ class Utils {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
 
+    public static function changeColor(int $i) : string
+    {
+        $res;
+        if ($i%2 == 0)
+        {
+            $res = "monitoringColorA";
+        }
+        else
+        {
+            $res = "monitoringColorB";
+        }
+        return $res;
+    }
+
 }
