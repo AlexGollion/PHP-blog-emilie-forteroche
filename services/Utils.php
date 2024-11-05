@@ -157,4 +157,28 @@ class Utils {
         return $result;
     }
 
+    public static function afficherComment(array $comments, Article $article, bool $isAdmin) : void
+    {
+        foreach ($comments as $comment) {
+            echo '<li class="comment">';
+            echo '  <div class="smiley">☻</div>';
+            echo '  <div class="detailComment">';
+            echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
+            
+            if ($isAdmin)
+            {
+                echo '<form action="index.php" method="post" class="formDelete">';
+                echo '  <input type="hidden" name="action" value="deleteComment">';
+                echo '  <input type="hidden" name="idArticle" value="' . $article->getId() . '">';
+                echo '  <input type="hidden" name="idComment" value="' . $comment->getId() . '">';
+                echo '  <button class=submit>supprimer</button>';
+                echo '</form>';
+            }
+
+            echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
+            echo '  </div>';
+            echo '</li>';
+        }     
+    }
+
 }

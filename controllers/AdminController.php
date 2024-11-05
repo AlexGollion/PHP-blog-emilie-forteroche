@@ -201,4 +201,45 @@ class AdminController {
             'articles' => $articles,
         ]);
     }
+
+    public function deleteComment()
+    {
+        $this->checkIfUserIsConnected();
+
+        // Récupération des données du formulaire.
+        $idArticle = Utils::request("idArticle", -1);
+        $idComment = Utils::request("idComment", -1);
+
+        echo $idArticle;
+        echo $idComment;
+ 
+        // On vérifie que les données sont valides.
+        if (empty($idArticle) || empty($idComment)) {
+            throw new Exception("id de l'article ou du commentaire non trouvé");
+        }
+ 
+        // On vérifie que l'article existe.
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($idArticle);
+        if (!$article) {
+            throw new Exception("L'article demandé n'existe pas.");
+        }
+ 
+        // On ajoute le commentaire.
+        $commentManager = new CommentManager();
+        $result = $commentManager->getCommentById($idComment);
+        
+        // On vérifie que l'ajout a bien fonctionné.
+        if (!$result) {
+            throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
+        }
+        
+        $deleteRes = $commentManager->deleteComment($result);
+        
+        if (!$deleteRes) {
+            throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
+        }
+        // On redirige vers la page de l'article.
+        Utils::redirect("showArticle", ['id' => $idArticle]);
+    }
 }

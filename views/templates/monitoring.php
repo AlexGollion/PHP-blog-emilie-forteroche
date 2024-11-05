@@ -13,8 +13,8 @@
     <tr>
         <th class="titleMonitoring">Titre de l'article</th>
         <th class="titleMonitoring">Nombre de vues</th>
-        <th class="titleMonitoring">Nombre de commentaire</th>
         <th class="titleMonitoring">Date de création</th>
+        <th class="titleMonitoring">Nombre de commentaire</th>
     </tr>
     <?php $i = 0; foreach ($articles as $article) { $classBackgroundColor = Utils::changeColor($i) ?>
         <tr class="<?= $classBackgroundColor ?>">

@@ -114,7 +114,7 @@ class ArticleManager extends AbstractEntityManager
     {
         $sql = 'SELECT DISTINCT title, article.date_creation, nombre_vues, COUNT(*) OVER(PARTITION by article.id) as nombre_commentaires 
                 FROM `article` 
-                INNER JOIN comment ON article.id = comment.id_article';
+                LEFT JOIN comment ON article.id = comment.id_article';
 
         if ($categorie != "" && $ordre != "")
         {
@@ -134,6 +134,7 @@ class ArticleManager extends AbstractEntityManager
         while ($article = $result->fetch()) {
             array_push($articles, $article);
         }
+
         return $articles;
     }
 }

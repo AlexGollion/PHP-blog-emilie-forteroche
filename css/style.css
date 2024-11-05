@@ -286,6 +286,25 @@ a.info {
     color: var(--quoteColor);
 }
 
+.comment {
+    position: relative;
+}
+
+.formDelete {
+    width: auto;
+    margin-top: 0px;
+    padding: 0px;
+    color: white;
+    background-color: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.formDelete .submit {
+    background-color: var(--titleColor);
+}
+
 /* On redéfinit certaines parties du "info" pour l'affichage dans les commentaires */
 .detailComment .info {
     margin: 5px 0 5px 0;
@@ -354,8 +373,23 @@ a.info {
  * Partie monitoring 
  */
 
-form .select {
+.tri {
+    background-color: var(--dateColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select {
     margin: 10px;
+    background-color: var(--headerPaleColor);
+    padding: 5px;
+    font-weight: bold;
+}
+
+.tri .submit {
+    padding: 10px 15px;
+    margin-left: 15px;
 }
 
 .monitoringTable {
