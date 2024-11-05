@@ -101,4 +101,60 @@ class Utils {
         return $res;
     }
 
+    public static function formTri() : void
+    {
+        $categorie = 
+        [
+            ['value' => 'title', 'name' => 'Titre'],
+            ['value' => 'nombre_vues', 'name' => 'Vues'],
+            ['value' => 'date_creation', 'name' => 'Date de création'],
+            ['value' => 'nombre_commentaires', 'name' => 'Commentaire']
+        ];
+    
+        $ordre = 
+        [
+            ['value' => 'croissant', 'name' => 'Ordre croissant'],
+            ['value' => 'decroissant', 'name' => 'Ordre dcroissant']
+        ];
+
+        echo "<form method=\"POST\" action=\"\" class=\"tri\">";
+        
+        if (isset($_POST['categorie']) && isset($_POST['ordre']) && $_POST['categorie'] != "" && $_POST['ordre'] != "")
+        {
+
+            echo Utils::createSelect($categorie, $_POST['categorie'], "categorie") .
+                 Utils::createSelect($ordre, $_POST['ordre'], "ordre");
+        }
+        else
+        {
+            echo Utils::createSelect($categorie, null, "categorie", "Choisir une catégorie de tri") .
+                 Utils::createSelect($ordre, null, "ordre", "Choisir un ordre de tri");
+        }
+        echo "<input type=\"submit\" value=\"Trier\" class=\"submit\"/></form>";
+    }
+
+    private static function createSelect(array $values, string $selected = null, string $nameSelect, string $default = null) : string
+    {
+        $result = "<select name=" . $nameSelect . " class=\"select\">";
+        if ($default != null)
+        {
+            $result = $result . "<option value=\"\">" . $default . "</option>";
+        }
+        foreach ($values as $value)
+        {
+            $result = $result . "<option value=" . $value['value'];
+            if ($value['value'] == $selected)
+            {
+                $result = $result . " selected=\"selected\">";
+            }
+            else
+            {
+                $result = $result . ">";
+            }
+            $result = $result . $value['name'] . "</option>";
+        }
+        $result = $result . "</select>";
+        return $result;
+    }
+
 }

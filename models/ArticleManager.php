@@ -106,4 +106,34 @@ class ArticleManager extends AbstractEntityManager
             'id' => $article->getId(),
         ]);
     }
+
+    /**
+     * 
+     */
+    public function getArticleTri(string $categorie, string $ordre) : array
+    {
+        $sql = 'SELECT DISTINCT title, article.date_creation, nombre_vues, COUNT(*) OVER(PARTITION by article.id) as nombre_commentaires 
+                FROM `article` 
+                INNER JOIN comment ON article.id = comment.id_article';
+
+        if ($categorie != "" && $ordre != "")
+        {
+            if ($ordre == 'croissant')
+            {
+                $sql = $sql . ' ORDER BY ' . $categorie . ' ASC';
+            } 
+            else if ($ordre == 'decroissant')
+            {
+                $sql = $sql . ' ORDER BY ' . $categorie . ' DESC';
+            }
+        }      
+
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($article = $result->fetch()) {
+            array_push($articles, $article);
+        }
+        return $articles;
+    }
 }

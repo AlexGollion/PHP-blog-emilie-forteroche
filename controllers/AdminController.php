@@ -181,25 +181,24 @@ class AdminController {
     {
         $this->checkIfUserIsConnected();
 
-        //echo "ici";
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
-        
-        $commentManager = new CommentManager();
-        $nbComment = [];
-        foreach ($articles as $article)
+        if (isset($_POST['categorie']) && isset($_POST['ordre']))
         {
-            $idTemp =  $article->getId();
-            $i = $commentManager->countComment($idTemp);
-            array_push($nbComment, $i);
+            $categorie = $_POST['categorie'];
+            $ordre = $_POST['ordre'];
         }
+        else
+        {
+            $categorie = "";
+            $ordre = "";
+        }
+        $articles = $articleManager->getArticleTri($categorie,$ordre);
         
         // On affiche la page d'administration.
         $view = new View("Monitoring des articles");
         $view->render("monitoring", [
             'articles' => $articles,
-            'nbComment' => $nbComment,
         ]);
     }
 }

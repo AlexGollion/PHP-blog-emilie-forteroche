@@ -354,8 +354,13 @@ a.info {
  * Partie monitoring 
  */
 
+form .select {
+    margin: 10px;
+}
+
 .monitoringTable {
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 .rowMonitoring, .titleMonitoring {
