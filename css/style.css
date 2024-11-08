@@ -374,7 +374,7 @@ a.info {
  */
 
 .tri {
-    background-color: var(--dateColor);
+    background-color: var(--backgroundColor);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -385,10 +385,11 @@ a.info {
     background-color: var(--headerPaleColor);
     padding: 5px;
     font-weight: bold;
+    border: none;
 }
 
 .tri .submit {
-    padding: 10px 15px;
+    padding: 7px 15px;
     margin-left: 15px;
 }
 

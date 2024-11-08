@@ -1,7 +1,6 @@
 <?php 
     /** 
-     * Affichage de la partie monitoring : liste des articles avec un bouton "modifier" pour chacun. 
-     * Et un formulaire pour ajouter un article. 
+     * Affichage de la partie monitoring : tableau triable par titre, nombre de vues, date de création et nombre de commentaire 
      */
 ?>
 

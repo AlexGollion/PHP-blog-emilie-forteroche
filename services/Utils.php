@@ -87,6 +87,11 @@ class Utils {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
 
+    /**
+     * Permet de changer la couleur d'une ligne sur deux d'un tableau
+     * @param int $i : numéro de la ligne du tableau
+     * @return string : la class css de la ligne du tableau
+     */
     public static function changeColor(int $i) : string
     {
         $res;
@@ -101,6 +106,10 @@ class Utils {
         return $res;
     }
 
+    /**
+     * Créer le formulaire de tri de la page monitoring
+     * @return void
+     */
     public static function formTri() : void
     {
         $categorie = 
@@ -133,6 +142,14 @@ class Utils {
         echo "<input type=\"submit\" value=\"Trier\" class=\"submit\"/></form>";
     }
 
+    /**
+     * Permet de créer des select
+     * @param array $values : liste des option du select
+     * @param string $selected : option selectionnée par l'utilisateur (peut etre null)
+     * @param string $nameSelect : nom du select
+     * @param string $default :  permet de mettre l'option par défault
+     * @return string : return le select créer sous forme de string
+     */
     private static function createSelect(array $values, string $selected = null, string $nameSelect, string $default = null) : string
     {
         $result = "<select name=" . $nameSelect . " class=\"select\">";
@@ -157,6 +174,13 @@ class Utils {
         return $result;
     }
 
+    /**
+     * Affiche les commentaire de l'article passer en pramètre
+     * @param array $comments : liste des commentaires de l'article
+     * @param Article $article : l'article des commentaires
+     * @param bool $isAdmin : true si l'utilisateur est un admin false sinon
+     * @return void
+     */
     public static function afficherComment(array $comments, Article $article, bool $isAdmin) : void
     {
         foreach ($comments as $comment) {

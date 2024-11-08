@@ -108,7 +108,10 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
-     * 
+     * Récupère les infos du tableau trié
+     * @param string $categorie : la catégorie que l'ont tri
+     * @param string $categorie : l'ordre selon lequel on tri le tableau (croissant ou décroissant)
+     * @return array : les informations récupérer par la requete sql
      */
     public function getArticleTri(string $categorie, string $ordre) : array
     {

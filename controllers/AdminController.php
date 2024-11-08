@@ -177,7 +177,12 @@ class AdminController {
         Utils::redirect("admin");
     }
 
-    public function monitoringArticle()
+
+    /**
+     * Affichage de la page de monitoring
+     * @return void
+     */
+    public function monitoringArticle() : void
     {
         $this->checkIfUserIsConnected();
 
@@ -195,23 +200,25 @@ class AdminController {
         }
         $articles = $articleManager->getArticleTri($categorie,$ordre);
         
-        // On affiche la page d'administration.
+        // On affiche la page de monitoring.
         $view = new View("Monitoring des articles");
         $view->render("monitoring", [
             'articles' => $articles,
         ]);
     }
 
-    public function deleteComment()
+
+    /**
+     * Suppression d'un commentaire
+     * @return void 
+     */
+    public function deleteComment() : void
     {
         $this->checkIfUserIsConnected();
 
         // Récupération des données du formulaire.
         $idArticle = Utils::request("idArticle", -1);
         $idComment = Utils::request("idComment", -1);
-
-        echo $idArticle;
-        echo $idComment;
  
         // On vérifie que les données sont valides.
         if (empty($idArticle) || empty($idComment)) {
@@ -225,11 +232,11 @@ class AdminController {
             throw new Exception("L'article demandé n'existe pas.");
         }
  
-        // On ajoute le commentaire.
+        // On récupère le commentaire.
         $commentManager = new CommentManager();
         $result = $commentManager->getCommentById($idComment);
         
-        // On vérifie que l'ajout a bien fonctionné.
+        // On vérifie que la récupération a bien fonctionné.
         if (!$result) {
             throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
         }
@@ -239,6 +246,7 @@ class AdminController {
         if (!$deleteRes) {
             throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
         }
+        
         // On redirige vers la page de l'article.
         Utils::redirect("showArticle", ['id' => $idArticle]);
     }
