@@ -56,8 +56,8 @@
             </form>
         </th>
     </tr>
-    <?php foreach ($articles as $index => $article) { $classBackgroundColor = Utils::changeColor($index) ?>
-        <tr class="<?= $classBackgroundColor ?>">
+    <?php foreach ($articles as $index => $article) { ?>
+        <tr class="<?= Utils::changeColor($index) ?>">
             <td class="rowMonitoring rowTitle"><?= $article['article']->getTitle() ?></td>
             <td class="rowMonitoring"><?= $article['article']->getNombreVues() ?></td>
             <td class="rowMonitoring"><?= Utils::convertDateToFrenchFormat($article['article']->getDateCreation()) ?></td>
