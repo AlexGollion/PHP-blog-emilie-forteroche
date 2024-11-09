@@ -79,9 +79,9 @@ try {
             $adminController->monitoringArticle();
             break;
             
-            case 'deleteComment' : 
-                $adminController = new AdminController();
-                $adminController->deleteComment();
+        case 'deleteComment' : 
+            $adminController = new AdminController();
+            $adminController->deleteComment();
             break;
 
         default:

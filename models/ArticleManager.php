@@ -115,11 +115,10 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getArticleTri(string $categorie, string $ordre) : array
     {
-        $sql = 'SELECT DISTINCT title, article.date_creation, nombre_vues, COUNT(*) OVER(PARTITION by article.id) as nombre_commentaires 
-                FROM `article` 
-                LEFT JOIN comment ON article.id = comment.id_article';
+        $sql = 'SELECT DISTINCT article.id, title, article.date_creation, nombre_vues, COUNT(comment.id) OVER(PARTITION by article.id) as nombre_commentaires
+                FROM article LEFT JOIN comment ON article.id = comment.id_article';
 
-        if ($categorie != "" && $ordre != "")
+        if ($categorie != "" && $ordre != "" && $categorie )
         {
             if ($ordre == 'croissant')
             {
@@ -134,10 +133,12 @@ class ArticleManager extends AbstractEntityManager
         $result = $this->db->query($sql);
         $articles = [];
 
-        while ($article = $result->fetch()) {
-            array_push($articles, $article);
+        while ($res = $result->fetch()) {
+            $nbComment = $res['nombre_commentaires'];
+            $article = new Article($res);
+            $dataArray = array('article' => $article, 'nombre_commentaires' => $nbComment);
+            array_push($articles, $dataArray);
         }
-
         return $articles;
     }
 }

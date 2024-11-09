@@ -106,72 +106,69 @@ class Utils {
         return $res;
     }
 
-    /**
-     * Créer le formulaire de tri de la page monitoring
-     * @return void
+     /**
+     * Permet de changer la couleur d'une ligne sur deux d'un tableau
+     * @return string : la class css de la ligne du tableau
      */
-    public static function formTri() : void
+    public static function changeOrdre() : string
     {
-        $categorie = 
-        [
-            ['value' => 'title', 'name' => 'Titre'],
-            ['value' => 'nombre_vues', 'name' => 'Vues'],
-            ['value' => 'date_creation', 'name' => 'Date de création'],
-            ['value' => 'nombre_commentaires', 'name' => 'Commentaire']
-        ];
-    
-        $ordre = 
-        [
-            ['value' => 'croissant', 'name' => 'Ordre croissant'],
-            ['value' => 'decroissant', 'name' => 'Ordre dcroissant']
-        ];
-
-        echo "<form method=\"POST\" action=\"\" class=\"tri\">";
-        
-        if (isset($_POST['categorie']) && isset($_POST['ordre']) && $_POST['categorie'] != "" && $_POST['ordre'] != "")
+        $res;
+        if (isset($_POST['ordre']) && $_POST['ordre'] != "")
         {
-
-            echo Utils::createSelect($categorie, $_POST['categorie'], "categorie") .
-                 Utils::createSelect($ordre, $_POST['ordre'], "ordre");
+            switch ($_POST['ordre'])
+            {
+                case 'croissant' :
+                    $res = 'decroissant';
+                    break;
+                case 'decroissant' :
+                    $res = 'croissant';
+                    break;
+                default :
+                    break;
+            }
         }
         else
         {
-            echo Utils::createSelect($categorie, null, "categorie", "Choisir une catégorie de tri") .
-                 Utils::createSelect($ordre, null, "ordre", "Choisir un ordre de tri");
+            $res = "croissant";
         }
-        echo "<input type=\"submit\" value=\"Trier\" class=\"submit\"/></form>";
+        return $res;
     }
 
-    /**
-     * Permet de créer des select
-     * @param array $values : liste des option du select
-     * @param string $selected : option selectionnée par l'utilisateur (peut etre null)
-     * @param string $nameSelect : nom du select
-     * @param string $default :  permet de mettre l'option par défault
-     * @return string : return le select créer sous forme de string
+         /**
+     * Permet de changer la couleur d'une ligne sur deux d'un tableau
+     * @param string $categorie : colone actuellement selectionné
+     * @return string : lrenvoie l'incon à afficher
      */
-    private static function createSelect(array $values, string $selected = null, string $nameSelect, string $default = null) : string
+    public static function changeIcon(string $categorie) : string
     {
-        $result = "<select name=" . $nameSelect . " class=\"select\">";
-        if ($default != null)
+        $res = "";
+        if (isset($_POST['categorie']) && isset($_POST['ordre']) && $_POST['categorie'] != "" && $_POST['ordre'] != "")
         {
-            $result = $result . "<option value=\"\">" . $default . "</option>";
+            if ($_POST['categorie'] == $categorie)
+            {
+                switch ($_POST['ordre'])
+                {
+                    case 'croissant' :
+                        $res = 'fa-sort-down';
+                        break;
+                    case 'decroissant' :
+                        $res = 'fa-sort-up';
+                        break;
+                    default :
+                        break;
+                }
+            }
+            else 
+            {
+                $res = "fa-sort";
+            }
         }
-        foreach ($values as $value)
+        else
         {
-            $result = $result . "<option value=" . $value['value'];
-            if ($value['value'] == $selected)
-            {
-                $result = $result . " selected=\"selected\">";
-            }
-            else
-            {
-                $result = $result . ">";
-            }
-            $result = $result . $value['name'] . "</option>";
+            //echo "ici";
+            $res = "fa-sort";
         }
-        $result = $result . "</select>";
-        return $result;
+        return $res;
     }
 
     /**

@@ -6,21 +6,62 @@
 
 <h2>Edition des articles</h2>
 
-<?php Utils::formTri(); ?>
-
 <table class="monitoringTable">
     <tr>
-        <th class="titleMonitoring">Titre de l'article</th>
-        <th class="titleMonitoring">Nombre de vues</th>
-        <th class="titleMonitoring">Date de création</th>
-        <th class="titleMonitoring">Nombre de commentaire</th>
+        <th class="titleMonitoring">
+            <form action="index.php" method="post" class="tri">
+                <input type="hidden" name="action" value="monitoringArticle">
+                <input type="hidden" name="categorie" value="title">
+                <input type="hidden" name="ordre" value= <?= Utils::changeOrdre() ?>>
+                <button class="categorieTri">
+                    Titre de l'article
+                    <i class="fa-solid <?= Utils::changeIcon("title") ?> "></i>
+                </button>
+            </form>
+        </th>
+
+        <th class="titleMonitoring">
+            <form action="index.php" method="post" class="tri">
+                <input type="hidden" name="action" value="monitoringArticle">
+                <input type="hidden" name="categorie" value="nombre_vues">
+                <input type="hidden" name="ordre" value= <?= Utils::changeOrdre() ?>>
+                <button class="categorieTri">
+                    Nombre de vues
+                    <i class="fa-solid <?= Utils::changeIcon("nombre_vues") ?> "></i>
+                </button>
+            </form>
+        </th>
+
+        <th class="titleMonitoring">
+            <form action="index.php" method="post" class="tri">
+                <input type="hidden" name="action" value="monitoringArticle">
+                <input type="hidden" name="categorie" value="date_creation">
+                <input type="hidden" name="ordre" value= <?= Utils::changeOrdre() ?>>
+                <button class="categorieTri">
+                    Date de création
+                    <i class="fa-solid <?= Utils::changeIcon("date_creation") ?> "></i>
+                </button>
+            </form>
+        </th>
+
+        <th class="titleMonitoring">
+            <form action="index.php" method="post" class="tri">
+                <input type="hidden" name="action" value="monitoringArticle">
+                <input type="hidden" name="categorie" value="nombre_commentaires">
+                <input type="hidden" name="ordre" value= <?= Utils::changeOrdre() ?>>
+                <button class="categorieTri">
+                    Nombre de commentiares
+                    <i class="fa-solid <?= Utils::changeIcon("nombre_commentaires") ?> "></i>
+                </button>
+            </form>
+        </th>
     </tr>
-    <?php $i = 0; foreach ($articles as $article) { $classBackgroundColor = Utils::changeColor($i) ?>
+    <?php foreach ($articles as $index => $article) { $classBackgroundColor = Utils::changeColor($index) ?>
         <tr class="<?= $classBackgroundColor ?>">
-            <td class="rowMonitoring rowTitle"><?= $article['title'] ?></td>
-            <td class="rowMonitoring"><?= $article['nombre_vues'] ?></td>
-            <td class="rowMonitoring"><?= $article['date_creation'] ?></td>
+            <td class="rowMonitoring rowTitle"><?= $article['article']->getTitle() ?></td>
+            <td class="rowMonitoring"><?= $article['article']->getNombreVues() ?></td>
+            <td class="rowMonitoring"><?= Utils::convertDateToFrenchFormat($article['article']->getDateCreation()) ?></td>
             <td class="rowMonitoring"><?= $article['nombre_commentaires'] ?></td>
         </tr>
-    <?php $i++; } ?>
+    <?php } ?>
 </table>

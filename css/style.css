@@ -373,24 +373,41 @@ a.info {
  * Partie monitoring 
  */
 
+.categorieTri {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--quoteColor);
+    border: none;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.categorieTri > .fa-solid {
+    margin-left: 15px;
+}
+
+.fa-sort {
+    font-size: 20px;
+}
+
+.fa-sort-up, .fa-sort-down {
+    font-size: 22px;
+}
+
 .tri {
-    background-color: var(--backgroundColor);
+    background-color: var(--quoteColor);
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.select {
-    margin: 10px;
-    background-color: var(--headerPaleColor);
-    padding: 5px;
-    font-weight: bold;
-    border: none;
-}
-
-.tri .submit {
-    padding: 7px 15px;
-    margin-left: 15px;
+    margin-top: 0px;
+    padding: 0px;
+    height: 100%;
 }
 
 .monitoringTable {
@@ -401,12 +418,15 @@ a.info {
 .rowMonitoring, .titleMonitoring {
     border: 3px solid black;
     text-align: center;
+}
+
+.rowMonitoring {
     padding: 20px;
 }
 
 .titleMonitoring {
     background-color: var(--quoteColor);
-    font-size: 18px;
+    height: 50px;
 }
 
 .rowTitle {
