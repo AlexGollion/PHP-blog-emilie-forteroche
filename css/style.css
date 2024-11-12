@@ -373,6 +373,10 @@ a.info {
  * Partie monitoring 
  */
 
+.submit, .categorieTri {
+    cursor: pointer;
+}
+
 .categorieTri {
     display: flex;
     flex-direction: row;
