@@ -118,7 +118,7 @@ class ArticleManager extends AbstractEntityManager
         $sql = 'SELECT DISTINCT article.id, title, article.date_creation, nombre_vues, COUNT(comment.id) OVER(PARTITION by article.id) as nombre_commentaires
                 FROM article LEFT JOIN comment ON article.id = comment.id_article';
 
-        if ($categorie != "" && $ordre != "" && $categorie )
+        if ($categorie != "" && $ordre != "")
         {
             if ($ordre == 'croissant')
             {

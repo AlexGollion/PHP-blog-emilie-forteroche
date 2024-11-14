@@ -133,7 +133,7 @@
      * Setter pour le nombre de vues
      * @param int $nbVues : nouveau nombre de vues
      */
-    public function setNombreVues(int $nbVues)
+    public function setNombreVues(int $nbVues) : void
     {
         $this->nbVues = $nbVues;
     }
